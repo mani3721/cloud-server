@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Share File</title>
+    <script>
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copied to clipboard');
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Share File Link</h1>
+    <p>Here is the link to download the file:</p>
+    <p>
+        <a href="<%= fileUrl %>">
+            <%= fileUrl %>
+        </a>
+        <button onclick="copyToClipboard('<%= fileUrl %>')">Copy Link</button>
+    </p>
+    <p><a href="/">Go back to the home page</a></p>
+</body>
+
+</html>

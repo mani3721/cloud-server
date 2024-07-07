@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>File Preview and Download</title>
+</head>
+
+<body>
+    <h1>File: <%= fileName %>
+    </h1>
+    <p>
+        <a href="/uploads/<%= fileName %>" download>Download</a>
+        <% if (isImage) { %>
+            <button onclick="previewFile('<%= fileUrl %>')">Preview</button>
+            <% } %>
+    </p>
+    <div id="preview" style="display: none;">
+        <img id="previewImage" src="" alt="File preview" style="max-width: 100%;">
+    </div>
+    <script>
+        function previewFile(url) {
+            document.getElementById('previewImage').src = url;
+            document.getElementById('preview').style.display = 'block';
+        }
+    </script>
+    <p><a href="/">Go back to the home page</a></p>
+</body>
+
+</html>

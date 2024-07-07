@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File</title>
+    <script>
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copied to clipboard');
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Upload File</h1>
+    <form ref="uploadForm" id="uploadForm" action="/upload" method="post" encType="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" value="Upload!" />
+    </form>
+    <h2>Uploaded Files</h2>
+    <ul>
+        <% files.forEach(file=> { %>
+            <li>
+                <a href="/uploads/<%= file %>" download>
+                    <%= file %>
+                </a>
+                <span> - <a href="/file/<%= file %>">Share Link</a> -
+                    <button onclick="copyToClipboard('http://<%= request.headers.host %>/file/<%= file %>')">Copy
+                        Link</button></span>
+            </li>
+            <% }); %>
+    </ul>
+</body>
+
+</html>
